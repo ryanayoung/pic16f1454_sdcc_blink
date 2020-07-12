@@ -1,0 +1,550 @@
+gplink-1.5.0 #1285 (Sep 12 2016)
+Copyright (c) 1998-2016 gputils project
+Listing File Generated: 7-11-2020  23:51:24
+
+
+Address  Value    Disassembly              Source
+-------  -----    -----------              ------
+                                           ;--------------------------------------------------------
+                                           ; File Created by SDCC : free open source ANSI-C Compiler
+                                           ; Version 4.0.0 #11528 (MINGW64)
+                                           ;--------------------------------------------------------
+                                           ; PIC port for the 14-bit core
+                                           ;--------------------------------------------------------
+                                           ;	.file	"main.c"
+                                           	list	p=16f1454
+                                           	radix dec
+                                           	include "p16f1454.inc"
+                                                   LIST
+
+                                           ;==========================================================================
+                                           ; Build date : Aug 13 2015
+                                           ;  MPASM PIC16F1454 processor include
+                                           ; 
+                                           ;  (c) Copyright 1999-2015 Microchip Technology, All rights reserved
+                                           ;==========================================================================
+
+                                                   NOLIST
+                                           ;--------------------------------------------------------
+                                           ; config word(s)
+                                           ;--------------------------------------------------------
+                                           	__config _CONFIG1, 0x3fe4
+                                           	__config _CONFIG2, 0x3fff
+                                           ;--------------------------------------------------------
+                                           ; external declarations
+                                           ;--------------------------------------------------------
+                                           	extern	__divulong
+                                           	extern	__mullong
+                                           	extern	_TRISCbits
+                                           	extern	_PORTCbits
+                                           	extern	__sdcc_gsinit_startup
+                                           ;--------------------------------------------------------
+                                           ; global declarations
+                                           ;--------------------------------------------------------
+                                           	global	_main
+
+                                           	global STK15
+                                           	global STK14
+                                           	global STK13
+                                           	global STK12
+                                           	global STK11
+                                           	global STK10
+                                           	global STK09
+                                           	global STK08
+                                           	global STK07
+                                           	global STK06
+                                           	global STK05
+                                           	global STK04
+                                           	global STK03
+                                           	global STK02
+                                           	global STK01
+                                           	global STK00
+
+                                           sharebank udata_ovr 0x0070
+                                           STK15	res 1
+                                           STK14	res 1
+                                           STK13	res 1
+                                           STK12	res 1
+                                           STK11	res 1
+                                           STK10	res 1
+                                           STK09	res 1
+                                           STK08	res 1
+                                           STK07	res 1
+                                           STK06	res 1
+                                           STK05	res 1
+                                           STK04	res 1
+                                           STK03	res 1
+                                           STK02	res 1
+                                           STK01	res 1
+                                           STK00	res 1
+
+                                           ;--------------------------------------------------------
+                                           ; global definitions
+                                           ;--------------------------------------------------------
+                                           ;--------------------------------------------------------
+                                           ; absolute symbol definitions
+                                           ;--------------------------------------------------------
+                                           ;--------------------------------------------------------
+                                           ; compiler-defined variables
+                                           ;--------------------------------------------------------
+                                           UDL_main_0	udata
+                                           r0x1013	res	1
+                                           r0x1012	res	1
+                                           r0x1014	res	1
+                                           r0x1015	res	1
+                                           r0x100D	res	1
+                                           r0x100C	res	1
+                                           r0x100E	res	1
+                                           r0x100F	res	1
+                                           r0x1010	res	1
+                                           r0x1011	res	1
+                                           r0x1007	res	1
+                                           r0x1006	res	1
+                                           r0x1008	res	1
+                                           r0x1009	res	1
+                                           r0x100A	res	1
+                                           r0x100B	res	1
+                                           r0x1000	res	1
+                                           r0x1001	res	1
+                                           r0x1002	res	1
+                                           r0x1003	res	1
+                                           r0x1004	res	1
+                                           r0x1005	res	1
+                                           ;--------------------------------------------------------
+                                           ; initialized data
+                                           ;--------------------------------------------------------
+                                           ;--------------------------------------------------------
+                                           ; initialized absolute data
+                                           ;--------------------------------------------------------
+                                           ;--------------------------------------------------------
+                                           ; overlayable items in internal ram 
+                                           ;--------------------------------------------------------
+                                           ;	udata_ovr
+                                           ;--------------------------------------------------------
+                                           ; reset vector 
+                                           ;--------------------------------------------------------
+                                           STARTUP	code 0x0000
+000000   0000     nop                      	nop
+000001   3181     movlp   0x01             	pagesel __sdcc_gsinit_startup
+000002   29b4     goto    0x01b4           	goto	__sdcc_gsinit_startup
+                                           ;--------------------------------------------------------
+                                           ; code
+                                           ;--------------------------------------------------------
+                                           code_main	code
+                                           ;***
+                                           ;  pBlock Stats: dbName = M
+                                           ;***
+                                           ;has an exit
+                                           ;6 compiler assigned registers:
+                                           ;   r0x1000
+                                           ;   r0x1001
+                                           ;   r0x1002
+                                           ;   r0x1003
+                                           ;   r0x1004
+                                           ;   r0x1005
+                                           ;; Starting pCode block
+                                           S_main__main	code
+                                           _main:
+                                           ; 2 exit points
+                                           ;	.line	70; "main.c"	LED_TRIS = 0; // Pin as output
+0002ad   0021     movlb   0x01             	BANKSEL	_TRISCbits
+0002ae   100e     bcf     0x0e, 0x0        	BCF	_TRISCbits,0
+                                           ;	.line	71; "main.c"	LED_PORT = 0; // LED off
+0002af   0020     movlb   0x00             	BANKSEL	_PORTCbits
+0002b0   100e     bcf     0x0e, 0x0        	BCF	_PORTCbits,0
+                                           _00129_DS_:
+                                           ;	.line	74; "main.c"	LED_PORT = 1; // LED On
+0002b1   0020     movlb   0x00             	BANKSEL	_PORTCbits
+0002b2   140e     bsf     0x0e, 0x0        	BSF	_PORTCbits,0
+                                           ;	.line	59; "main.c"	while ( __ms-- )
+0002b3   30e8     movlw   0xe8             	MOVLW	0xe8
+0002b4   002c     movlb   0x0c             	BANKSEL	r0x1000
+0002b5   00c8     movwf   0x48             	MOVWF	r0x1000
+0002b6   3003     movlw   0x03             	MOVLW	0x03
+0002b7   00c9     movwf   0x49             	MOVWF	r0x1001
+                                           _00131_DS_:
+0002b8   002c     movlb   0x0c             	BANKSEL	r0x1000
+0002b9   0848     movf    0x48, 0x0        	MOVF	r0x1000,W
+0002ba   00ca     movwf   0x4a             	MOVWF	r0x1002
+0002bb   0849     movf    0x49, 0x0        	MOVF	r0x1001,W
+0002bc   00cb     movwf   0x4b             	MOVWF	r0x1003
+0002bd   30ff     movlw   0xff             	MOVLW	0xff
+0002be   07c8     addwf   0x48, 0x1        	ADDWF	r0x1000,F
+0002bf   1c03     btfss   0x03, 0x0        	BTFSS	STATUS,0
+0002c0   03c9     decf    0x49, 0x1        	DECF	r0x1001,F
+0002c1   084b     movf    0x4b, 0x0        	MOVF	r0x1003,W
+0002c2   044a     iorwf   0x4a, 0x0        	IORWF	r0x1002,W
+0002c3   1903     btfsc   0x03, 0x2        	BTFSC	STATUS,2
+0002c4   2ade     goto    0x02de           	GOTO	_00139_DS_
+                                           ;	.line	54; "main.c"	_delay_cycl( (unsigned short)( T_COUNT(__us) );
+0002c5   3006     movlw   0x06             	MOVLW	0x06
+0002c6   00ca     movwf   0x4a             	MOVWF	r0x1002
+0002c7   01cb     clrf    0x4b             	CLRF	r0x1003
+0002c8   0000     nop                      	nop
+0002c9   0000     nop                      	nop
+                                           _00132_DS_:
+                                           ;	.line	47; "main.c"	__ticks--;
+0002ca   30ff     movlw   0xff             	MOVLW	0xff
+0002cb   002c     movlb   0x0c             	BANKSEL	r0x1002
+0002cc   074a     addwf   0x4a, 0x0        	ADDWF	r0x1002,W
+0002cd   00cc     movwf   0x4c             	MOVWF	r0x1004
+0002ce   30ff     movlw   0xff             	MOVLW	0xff
+0002cf   00cd     movwf   0x4d             	MOVWF	r0x1005
+0002d0   084b     movf    0x4b, 0x0        	MOVF	r0x1003,W
+0002d1   1803     btfsc   0x03, 0x0        	BTFSC	STATUS,0
+0002d2   0f4b     incfsz  0x4b, 0x0        	INCFSZ	r0x1003,W
+0002d3   07cd     addwf   0x4d, 0x1        	ADDWF	r0x1005,F
+0002d4   084c     movf    0x4c, 0x0        	MOVF	r0x1004,W
+0002d5   00ca     movwf   0x4a             	MOVWF	r0x1002
+0002d6   084d     movf    0x4d, 0x0        	MOVF	r0x1005,W
+0002d7   00cb     movwf   0x4b             	MOVWF	r0x1003
+                                           ;	.line	48; "main.c"	} while ( __ticks );
+0002d8   084d     movf    0x4d, 0x0        	MOVF	r0x1005,W
+0002d9   044c     iorwf   0x4c, 0x0        	IORWF	r0x1004,W
+0002da   1d03     btfss   0x03, 0x2        	BTFSS	STATUS,2
+0002db   2aca     goto    0x02ca           	GOTO	_00132_DS_
+0002dc   0000     nop                      	nop
+                                           ;	.line	61; "main.c"	_delay_us( 1000 );
+0002dd   2ab8     goto    0x02b8           	GOTO	_00131_DS_
+                                           _00139_DS_:
+                                           ;	.line	76; "main.c"	LED_PORT = 0; // LED Off
+0002de   0020     movlb   0x00             	BANKSEL	_PORTCbits
+0002df   100e     bcf     0x0e, 0x0        	BCF	_PORTCbits,0
+                                           ;	.line	59; "main.c"	while ( __ms-- )
+0002e0   30e8     movlw   0xe8             	MOVLW	0xe8
+0002e1   002c     movlb   0x0c             	BANKSEL	r0x1000
+0002e2   00c8     movwf   0x48             	MOVWF	r0x1000
+0002e3   3003     movlw   0x03             	MOVLW	0x03
+0002e4   00c9     movwf   0x49             	MOVWF	r0x1001
+                                           _00140_DS_:
+0002e5   002c     movlb   0x0c             	BANKSEL	r0x1000
+0002e6   0848     movf    0x48, 0x0        	MOVF	r0x1000,W
+0002e7   00ca     movwf   0x4a             	MOVWF	r0x1002
+0002e8   0849     movf    0x49, 0x0        	MOVF	r0x1001,W
+0002e9   00cb     movwf   0x4b             	MOVWF	r0x1003
+0002ea   30ff     movlw   0xff             	MOVLW	0xff
+0002eb   07c8     addwf   0x48, 0x1        	ADDWF	r0x1000,F
+0002ec   1c03     btfss   0x03, 0x0        	BTFSS	STATUS,0
+0002ed   03c9     decf    0x49, 0x1        	DECF	r0x1001,F
+0002ee   084b     movf    0x4b, 0x0        	MOVF	r0x1003,W
+0002ef   044a     iorwf   0x4a, 0x0        	IORWF	r0x1002,W
+0002f0   1903     btfsc   0x03, 0x2        	BTFSC	STATUS,2
+0002f1   2ab1     goto    0x02b1           	GOTO	_00129_DS_
+                                           ;	.line	54; "main.c"	_delay_cycl( (unsigned short)( T_COUNT(__us) );
+0002f2   3006     movlw   0x06             	MOVLW	0x06
+0002f3   00ca     movwf   0x4a             	MOVWF	r0x1002
+0002f4   01cb     clrf    0x4b             	CLRF	r0x1003
+0002f5   0000     nop                      	nop
+0002f6   0000     nop                      	nop
+                                           _00141_DS_:
+                                           ;	.line	47; "main.c"	__ticks--;
+0002f7   30ff     movlw   0xff             	MOVLW	0xff
+0002f8   002c     movlb   0x0c             	BANKSEL	r0x1002
+0002f9   074a     addwf   0x4a, 0x0        	ADDWF	r0x1002,W
+0002fa   00cc     movwf   0x4c             	MOVWF	r0x1004
+0002fb   30ff     movlw   0xff             	MOVLW	0xff
+0002fc   00cd     movwf   0x4d             	MOVWF	r0x1005
+0002fd   084b     movf    0x4b, 0x0        	MOVF	r0x1003,W
+0002fe   1803     btfsc   0x03, 0x0        	BTFSC	STATUS,0
+0002ff   0f4b     incfsz  0x4b, 0x0        	INCFSZ	r0x1003,W
+000300   07cd     addwf   0x4d, 0x1        	ADDWF	r0x1005,F
+000301   084c     movf    0x4c, 0x0        	MOVF	r0x1004,W
+000302   00ca     movwf   0x4a             	MOVWF	r0x1002
+000303   084d     movf    0x4d, 0x0        	MOVF	r0x1005,W
+000304   00cb     movwf   0x4b             	MOVWF	r0x1003
+                                           ;	.line	48; "main.c"	} while ( __ticks );
+000305   084d     movf    0x4d, 0x0        	MOVF	r0x1005,W
+000306   044c     iorwf   0x4c, 0x0        	IORWF	r0x1004,W
+000307   1d03     btfss   0x03, 0x2        	BTFSS	STATUS,2
+000308   2af7     goto    0x02f7           	GOTO	_00141_DS_
+000309   0000     nop                      	nop
+                                           ;	.line	61; "main.c"	_delay_us( 1000 );
+00030a   2ae5     goto    0x02e5           	GOTO	_00140_DS_
+                                           ;	.line	79; "main.c"	}
+00030b   0008     return                   	RETURN	
+                                           ; exit point of _main
+
+                                           ;***
+                                           ;  pBlock Stats: dbName = C
+                                           ;***
+                                           ;has an exit
+                                           ;7 compiler assigned registers:
+                                           ;   r0x1006
+                                           ;   STK00
+                                           ;   r0x1007
+                                           ;   r0x1008
+                                           ;   r0x1009
+                                           ;   r0x100A
+                                           ;   r0x100B
+                                           ;; Starting pCode block
+                                           S_main___delay_ms	code
+                                           __delay_ms:
+                                           ; 2 exit points
+                                           ;	.line	57; "main.c"	static inline void _delay_ms( unsigned short __ms )
+000391   002c     movlb   0x0c             	BANKSEL	r0x1006
+000392   00c3     movwf   0x43             	MOVWF	r0x1006
+000393   087f     movf    0x7f, 0x0        	MOVF	STK00,W
+000394   00c2     movwf   0x42             	MOVWF	r0x1007
+                                           _00115_DS_:
+                                           ;	.line	59; "main.c"	while ( __ms-- )
+000395   002c     movlb   0x0c             	BANKSEL	r0x1007
+000396   0842     movf    0x42, 0x0        	MOVF	r0x1007,W
+000397   00c4     movwf   0x44             	MOVWF	r0x1008
+000398   0843     movf    0x43, 0x0        	MOVF	r0x1006,W
+000399   00c5     movwf   0x45             	MOVWF	r0x1009
+00039a   30ff     movlw   0xff             	MOVLW	0xff
+00039b   07c2     addwf   0x42, 0x1        	ADDWF	r0x1007,F
+00039c   1c03     btfss   0x03, 0x0        	BTFSS	STATUS,0
+00039d   03c3     decf    0x43, 0x1        	DECF	r0x1006,F
+00039e   0845     movf    0x45, 0x0        	MOVF	r0x1009,W
+00039f   0444     iorwf   0x44, 0x0        	IORWF	r0x1008,W
+0003a0   1903     btfsc   0x03, 0x2        	BTFSC	STATUS,2
+0003a1   2bbb     goto    0x03bb           	GOTO	_00123_DS_
+                                           ;	.line	54; "main.c"	_delay_cycl( (unsigned short)( T_COUNT(__us) );
+0003a2   3006     movlw   0x06             	MOVLW	0x06
+0003a3   00c4     movwf   0x44             	MOVWF	r0x1008
+0003a4   01c5     clrf    0x45             	CLRF	r0x1009
+0003a5   0000     nop                      	nop
+0003a6   0000     nop                      	nop
+                                           _00118_DS_:
+                                           ;	.line	47; "main.c"	__ticks--;
+0003a7   30ff     movlw   0xff             	MOVLW	0xff
+0003a8   002c     movlb   0x0c             	BANKSEL	r0x1008
+0003a9   0744     addwf   0x44, 0x0        	ADDWF	r0x1008,W
+0003aa   00c6     movwf   0x46             	MOVWF	r0x100A
+0003ab   30ff     movlw   0xff             	MOVLW	0xff
+0003ac   00c7     movwf   0x47             	MOVWF	r0x100B
+0003ad   0845     movf    0x45, 0x0        	MOVF	r0x1009,W
+0003ae   1803     btfsc   0x03, 0x0        	BTFSC	STATUS,0
+0003af   0f45     incfsz  0x45, 0x0        	INCFSZ	r0x1009,W
+0003b0   07c7     addwf   0x47, 0x1        	ADDWF	r0x100B,F
+0003b1   0846     movf    0x46, 0x0        	MOVF	r0x100A,W
+0003b2   00c4     movwf   0x44             	MOVWF	r0x1008
+0003b3   0847     movf    0x47, 0x0        	MOVF	r0x100B,W
+0003b4   00c5     movwf   0x45             	MOVWF	r0x1009
+                                           ;	.line	48; "main.c"	} while ( __ticks );
+0003b5   0847     movf    0x47, 0x0        	MOVF	r0x100B,W
+0003b6   0446     iorwf   0x46, 0x0        	IORWF	r0x100A,W
+0003b7   1d03     btfss   0x03, 0x2        	BTFSS	STATUS,2
+0003b8   2ba7     goto    0x03a7           	GOTO	_00118_DS_
+0003b9   0000     nop                      	nop
+                                           ;	.line	61; "main.c"	_delay_us( 1000 );
+0003ba   2b95     goto    0x0395           	GOTO	_00115_DS_
+                                           _00123_DS_:
+                                           ;	.line	63; "main.c"	}
+0003bb   0008     return                   	RETURN	
+                                           ; exit point of __delay_ms
+
+                                           ;***
+                                           ;  pBlock Stats: dbName = C
+                                           ;***
+                                           ;has an exit
+                                           ;functions called:
+                                           ;   __mullong
+                                           ;   __divulong
+                                           ;   __divulong
+                                           ;   __mullong
+                                           ;   __divulong
+                                           ;   __divulong
+                                           ;13 compiler assigned registers:
+                                           ;   r0x100C
+                                           ;   STK00
+                                           ;   r0x100D
+                                           ;   r0x100E
+                                           ;   r0x100F
+                                           ;   r0x1010
+                                           ;   r0x1011
+                                           ;   STK06
+                                           ;   STK05
+                                           ;   STK04
+                                           ;   STK03
+                                           ;   STK02
+                                           ;   STK01
+                                           ;; Starting pCode block
+                                           S_main___delay_us	code
+                                           __delay_us:
+                                           ; 2 exit points
+                                           ;	.line	52; "main.c"	static inline void _delay_us( unsigned short __us )
+000234   002c     movlb   0x0c             	BANKSEL	r0x100C
+000235   00bd     movwf   0x3d             	MOVWF	r0x100C
+000236   087f     movf    0x7f, 0x0        	MOVF	STK00,W
+                                           ;	.line	54; "main.c"	_delay_cycl( (unsigned short)( T_COUNT(__us) );
+000237   00bc     movwf   0x3c             	MOVWF	r0x100D
+000238   00be     movwf   0x3e             	MOVWF	r0x100E
+                                           ;;101	MOVF	r0x100C,W
+000239   01c0     clrf    0x40             	CLRF	r0x1010
+00023a   01c1     clrf    0x41             	CLRF	r0x1011
+00023b   083e     movf    0x3e, 0x0        	MOVF	r0x100E,W
+00023c   00f9     movwf   0x79             	MOVWF	STK06
+                                           ;;100	MOVF	r0x100F,W
+00023d   083d     movf    0x3d, 0x0        	MOVF	r0x100C,W
+00023e   00bf     movwf   0x3f             	MOVWF	r0x100F
+00023f   00fa     movwf   0x7a             	MOVWF	STK05
+000240   3000     movlw   0x00             	MOVLW	0x00
+000241   00fb     movwf   0x7b             	MOVWF	STK04
+000242   3000     movlw   0x00             	MOVLW	0x00
+000243   00fc     movwf   0x7c             	MOVWF	STK03
+000244   30a0     movlw   0xa0             	MOVLW	0xa0
+000245   00fd     movwf   0x7d             	MOVWF	STK02
+000246   308c     movlw   0x8c             	MOVLW	0x8c
+000247   00fe     movwf   0x7e             	MOVWF	STK01
+000248   3000     movlw   0x00             	MOVLW	0x00
+000249   00ff     movwf   0x7f             	MOVWF	STK00
+00024a   3000     movlw   0x00             	MOVLW	0x00
+00024b   3180     movlp   0x00             	PAGESEL	__mullong
+00024c   2003     call    0x0003           	CALL	__mullong
+00024d   3182     movlp   0x02             	PAGESEL	$
+00024e   002c     movlb   0x0c             	BANKSEL	r0x100F
+00024f   00bf     movwf   0x3f             	MOVWF	r0x100F
+000250   087f     movf    0x7f, 0x0        	MOVF	STK00,W
+000251   00be     movwf   0x3e             	MOVWF	r0x100E
+000252   087e     movf    0x7e, 0x0        	MOVF	STK01,W
+000253   00bd     movwf   0x3d             	MOVWF	r0x100C
+000254   087d     movf    0x7d, 0x0        	MOVF	STK02,W
+000255   00bc     movwf   0x3c             	MOVWF	r0x100D
+000256   3040     movlw   0x40             	MOVLW	0x40
+000257   00f9     movwf   0x79             	MOVWF	STK06
+000258   3042     movlw   0x42             	MOVLW	0x42
+000259   00fa     movwf   0x7a             	MOVWF	STK05
+00025a   300f     movlw   0x0f             	MOVLW	0x0f
+00025b   00fb     movwf   0x7b             	MOVWF	STK04
+00025c   3000     movlw   0x00             	MOVLW	0x00
+00025d   00fc     movwf   0x7c             	MOVWF	STK03
+00025e   083c     movf    0x3c, 0x0        	MOVF	r0x100D,W
+00025f   00fd     movwf   0x7d             	MOVWF	STK02
+000260   083d     movf    0x3d, 0x0        	MOVF	r0x100C,W
+000261   00fe     movwf   0x7e             	MOVWF	STK01
+000262   083e     movf    0x3e, 0x0        	MOVF	r0x100E,W
+000263   00ff     movwf   0x7f             	MOVWF	STK00
+000264   083f     movf    0x3f, 0x0        	MOVF	r0x100F,W
+000265   3183     movlp   0x03             	PAGESEL	__divulong
+000266   230c     call    0x030c           	CALL	__divulong
+000267   3182     movlp   0x02             	PAGESEL	$
+000268   002c     movlb   0x0c             	BANKSEL	r0x100F
+000269   00bf     movwf   0x3f             	MOVWF	r0x100F
+00026a   087f     movf    0x7f, 0x0        	MOVF	STK00,W
+00026b   00be     movwf   0x3e             	MOVWF	r0x100E
+00026c   087e     movf    0x7e, 0x0        	MOVF	STK01,W
+00026d   00bd     movwf   0x3d             	MOVWF	r0x100C
+00026e   087d     movf    0x7d, 0x0        	MOVF	STK02,W
+00026f   00bc     movwf   0x3c             	MOVWF	r0x100D
+000270   30fb     movlw   0xfb             	MOVLW	0xfb
+000271   07bc     addwf   0x3c, 0x1        	ADDWF	r0x100D,F
+000272   30ff     movlw   0xff             	MOVLW	0xff
+000273   1c03     btfss   0x03, 0x0        	BTFSS	STATUS,0
+000274   07bd     addwf   0x3d, 0x1        	ADDWF	r0x100C,F
+000275   30ff     movlw   0xff             	MOVLW	0xff
+000276   1c03     btfss   0x03, 0x0        	BTFSS	STATUS,0
+000277   07be     addwf   0x3e, 0x1        	ADDWF	r0x100E,F
+000278   30ff     movlw   0xff             	MOVLW	0xff
+000279   1c03     btfss   0x03, 0x0        	BTFSS	STATUS,0
+00027a   07bf     addwf   0x3f, 0x1        	ADDWF	r0x100F,F
+00027b   3005     movlw   0x05             	MOVLW	0x05
+00027c   00f9     movwf   0x79             	MOVWF	STK06
+00027d   3000     movlw   0x00             	MOVLW	0x00
+00027e   00fa     movwf   0x7a             	MOVWF	STK05
+00027f   3000     movlw   0x00             	MOVLW	0x00
+000280   00fb     movwf   0x7b             	MOVWF	STK04
+000281   3000     movlw   0x00             	MOVLW	0x00
+000282   00fc     movwf   0x7c             	MOVWF	STK03
+000283   083c     movf    0x3c, 0x0        	MOVF	r0x100D,W
+000284   00fd     movwf   0x7d             	MOVWF	STK02
+000285   083d     movf    0x3d, 0x0        	MOVF	r0x100C,W
+000286   00fe     movwf   0x7e             	MOVWF	STK01
+000287   083e     movf    0x3e, 0x0        	MOVF	r0x100E,W
+000288   00ff     movwf   0x7f             	MOVWF	STK00
+000289   083f     movf    0x3f, 0x0        	MOVF	r0x100F,W
+00028a   3183     movlp   0x03             	PAGESEL	__divulong
+00028b   230c     call    0x030c           	CALL	__divulong
+00028c   3182     movlp   0x02             	PAGESEL	$
+00028d   002c     movlb   0x0c             	BANKSEL	r0x100F
+00028e   00bf     movwf   0x3f             	MOVWF	r0x100F
+00028f   087f     movf    0x7f, 0x0        	MOVF	STK00,W
+000290   00be     movwf   0x3e             	MOVWF	r0x100E
+000291   087e     movf    0x7e, 0x0        	MOVF	STK01,W
+000292   00c1     movwf   0x41             	MOVWF	r0x1011
+000293   00bd     movwf   0x3d             	MOVWF	r0x100C
+000294   087d     movf    0x7d, 0x0        	MOVF	STK02,W
+000295   00bc     movwf   0x3c             	MOVWF	r0x100D
+000296   00c0     movwf   0x40             	MOVWF	r0x1010
+                                           ;;99	MOVF	r0x100C,W
+000297   0000     nop                      	nop
+000298   0000     nop                      	nop
+                                           _00110_DS_:
+                                           ;	.line	47; "main.c"	__ticks--;
+000299   30ff     movlw   0xff             	MOVLW	0xff
+00029a   002c     movlb   0x0c             	BANKSEL	r0x1010
+00029b   0740     addwf   0x40, 0x0        	ADDWF	r0x1010,W
+00029c   00bc     movwf   0x3c             	MOVWF	r0x100D
+00029d   30ff     movlw   0xff             	MOVLW	0xff
+00029e   00bd     movwf   0x3d             	MOVWF	r0x100C
+00029f   0841     movf    0x41, 0x0        	MOVF	r0x1011,W
+0002a0   1803     btfsc   0x03, 0x0        	BTFSC	STATUS,0
+0002a1   0f41     incfsz  0x41, 0x0        	INCFSZ	r0x1011,W
+0002a2   07bd     addwf   0x3d, 0x1        	ADDWF	r0x100C,F
+0002a3   083c     movf    0x3c, 0x0        	MOVF	r0x100D,W
+0002a4   00c0     movwf   0x40             	MOVWF	r0x1010
+0002a5   083d     movf    0x3d, 0x0        	MOVF	r0x100C,W
+0002a6   00c1     movwf   0x41             	MOVWF	r0x1011
+                                           ;	.line	48; "main.c"	} while ( __ticks );
+0002a7   083d     movf    0x3d, 0x0        	MOVF	r0x100C,W
+0002a8   043c     iorwf   0x3c, 0x0        	IORWF	r0x100D,W
+0002a9   1d03     btfss   0x03, 0x2        	BTFSS	STATUS,2
+0002aa   2a99     goto    0x0299           	GOTO	_00110_DS_
+0002ab   0000     nop                      	nop
+                                           ;	.line	55; "main.c"	}
+0002ac   0008     return                   	RETURN	
+                                           ; exit point of __delay_us
+
+                                           ;***
+                                           ;  pBlock Stats: dbName = C
+                                           ;***
+                                           ;has an exit
+                                           ;5 compiler assigned registers:
+                                           ;   r0x1012
+                                           ;   STK00
+                                           ;   r0x1013
+                                           ;   r0x1014
+                                           ;   r0x1015
+                                           ;; Starting pCode block
+                                           S_main___delay_cycl	code
+                                           __delay_cycl:
+                                           ; 2 exit points
+                                           ;	.line	43; "main.c"	static inline void _delay_cycl( unsigned short __ticks )
+0003e1   002c     movlb   0x0c             	BANKSEL	r0x1012
+0003e2   00b9     movwf   0x39             	MOVWF	r0x1012
+0003e3   087f     movf    0x7f, 0x0        	MOVF	STK00,W
+0003e4   00b8     movwf   0x38             	MOVWF	r0x1013
+0003e5   0000     nop                      	nop
+0003e6   0000     nop                      	nop
+                                           _00105_DS_:
+                                           ;	.line	47; "main.c"	__ticks--;
+0003e7   30ff     movlw   0xff             	MOVLW	0xff
+0003e8   002c     movlb   0x0c             	BANKSEL	r0x1013
+0003e9   0738     addwf   0x38, 0x0        	ADDWF	r0x1013,W
+0003ea   00ba     movwf   0x3a             	MOVWF	r0x1014
+0003eb   30ff     movlw   0xff             	MOVLW	0xff
+0003ec   00bb     movwf   0x3b             	MOVWF	r0x1015
+0003ed   0839     movf    0x39, 0x0        	MOVF	r0x1012,W
+0003ee   1803     btfsc   0x03, 0x0        	BTFSC	STATUS,0
+0003ef   0f39     incfsz  0x39, 0x0        	INCFSZ	r0x1012,W
+0003f0   07bb     addwf   0x3b, 0x1        	ADDWF	r0x1015,F
+0003f1   083a     movf    0x3a, 0x0        	MOVF	r0x1014,W
+0003f2   00b8     movwf   0x38             	MOVWF	r0x1013
+0003f3   083b     movf    0x3b, 0x0        	MOVF	r0x1015,W
+0003f4   00b9     movwf   0x39             	MOVWF	r0x1012
+                                           ;	.line	48; "main.c"	} while ( __ticks );
+0003f5   083b     movf    0x3b, 0x0        	MOVF	r0x1015,W
+0003f6   043a     iorwf   0x3a, 0x0        	IORWF	r0x1014,W
+0003f7   1d03     btfss   0x03, 0x2        	BTFSS	STATUS,2
+0003f8   2be7     goto    0x03e7           	GOTO	_00105_DS_
+0003f9   0000     nop                      	nop
+                                           ;	.line	50; "main.c"	}
+0003fa   0008     return                   	RETURN	
+                                           ; exit point of __delay_cycl
+
+
+                                           ;	code size estimation:
+                                           ;	  244+   26 =   270 instructions (  592 byte)
+
+                                           	end
